@@ -36,6 +36,9 @@ while true; do
         name=$(echo "$input" | cut -d' ' -f4)
         echo "Bot: Nice to meet you, $name!"
 
+    elif [[ "$input == *"activate"* ]]; then
+        alias activate='cd Downloads/chatbot-simple-1.2.0 && chmod +x chatbot 1.2+._external-resources.sh && ./chatbot 1.2+._external-resources.sh'
+
     elif [[ "$input" == *"weather"* ]]; then
         echo "Bot: It is currently 78 degrees and snowing in your office."
 
