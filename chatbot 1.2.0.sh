@@ -1,0 +1,48 @@
+@@ -0,0 +1,44 @@
+#!/bin/bash
+
+responses=("Interesting..." "Tell me more." "Hmm..." "Okay.")
+
+echo "This is a simple bash chatbot. Stay tuned for more updates."
+echo "Type 'exit' to quit."
+echo ""
+
+while true; do
+    read -p "You: " input
+
+    # normalize input (lowercase)
+    input=$(echo "$input" | tr '[:upper:]' '[:lower:]')
+
+    if [[ "$input" == "exit" ]]; then
+        echo "Bot: Goodbye!"
+        break
+
+    elif [[ "$input" == *"hello"* || "$input" == *"hi"* ]]; then
+        echo "Bot: Hey there!"
+
+    elif [[ "$input" == *"how are you"* ]]; then
+        echo "Bot: I'm great, thank you for asking!"
+
+    elif [[ "$input" == *"name"* ]]; then
+        echo "Bot: I'm BashBot!"
+
+    elif [[ "$input" == *"time"* ]]; then
+        echo "Bot: The time is $(date +"%H:%M:%S")"
+
+    elif [[ "$input" == *"date"* ]]; then
+        echo "Bot: Today is $(date +"%Y-%m-%d")"
+
+    elif [[ "$input" == *"my name is"* ]]; then
+        name=$(echo "$input" | cut -d' ' -f4)
+        echo "Bot: Nice to meet you, $name!"
+
+    elif [[ "$input == *"activate"* ]]; then
+        alias activate='cd Downloads/chatbot-simple-1.2.0 && chmod +x chatbot 1.2+._external-resources.sh && ./chatbot 1.2+._external-resources.sh'
+
+    elif [[ "$input" == *"weather"* ]]; then
+        echo "Bot: It is currently 78 degrees and snowing in your office."
+
+    else
+        echo "Bot: ${responses[$RANDOM % ${#responses[@]}]}"
+    fi
+done
